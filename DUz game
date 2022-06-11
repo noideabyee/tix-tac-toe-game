@@ -1,0 +1,47 @@
+from random import choice
+
+print('Hello welcome to duz game you should choose X or O')
+which=input('X or O \n which?').upper()
+if which=='O':
+    cum_char='X'
+elif which=='X':
+    cum_char='O'
+
+number_list=['1','2','3','4','5','6','7','8','9']
+
+jadval='''
+1 | 2 | 3 
+_________
+4 | 5 | 6
+_________
+7 | 8 | 9'''
+
+tedad_vared_shode=0
+brnde=0
+while brnde==0:
+    tedad_vared_shode+=1
+    print('''ok you are %s lets play, choose number: %s'''%(which,jadval))
+    print('adade baghi mande:%s'%(number_list))
+    add=input('your number:')
+
+    jadval=jadval.replace(add,which)
+    print(jadval)
+    #hazfe adade entekhab shode tavasote karbar ,entekhabe adad tavasote barname va hazfe anha az liste adad
+    number_list.remove(add)
+    random_num=choice(number_list)
+    jadval=jadval.replace(random_num,cum_char)
+    number_list.remove(random_num)
+     
+    #barande shoden:
+    if '%s | %s | %s'%(which,which,which) in jadval or jadval[1]==jadval[22]==jadval[42]==which or jadval[5]==jadval[26]==jadval[46]==which or jadval[9]==jadval[30]==jadval[50]==which or jadval[1]==jadval[26]==jadval[50]==which or jadval[9]==jadval[26]==jadval[42]==which :
+        brnde+=1
+        print('shoma bordid')
+
+    #bazande shodan
+    elif '%s | %s | %s'%(cum_char,cum_char,cum_char) in jadval or jadval[1]==jadval[22]==jadval[42]==cum_char or jadval[5]==jadval[26]==jadval[46]==cum_char or jadval[9]==jadval[30]==jadval[50]==cum_char or  jadval[1]==jadval[26]==jadval[50]==cum_char or jadval[9]==jadval[26]==jadval[42]==cum_char:
+        brnde+=1
+        print(jadval)
+        print('shoma bakhtid!!')
+    elif tedad_vared_shode==5:
+        print('shoma bakhtid!!')
+        brnde+=1
